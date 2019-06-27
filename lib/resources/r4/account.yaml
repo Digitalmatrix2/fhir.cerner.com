@@ -1,0 +1,47 @@
+---
+name: Account
+field_name_base_url: http://hl7.org/fhir/r4/account-definitions.html#Account
+fields:
+- name: type
+  required: 'Yes'
+  cardinality: 0..1
+  type: CodeableConcept
+  description: Categorizes the account for searching purposes.
+  action: terminology
+  url: https://hl7.org/fhir/R4/account-definitions.html#Account.type
+  binding:
+    description: Categorizes the account for searching purposes.
+    terminology:
+    - display: Account Types
+      system: http://hl7.org/fhir/identifier-type
+      info_link: http://hl7.org/fhir/valueset-account-type.html
+    - display: Millennium Person Identifier (Alias) Types 
+      system: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/18736
+      info_link: https://fhir.cerner.com/millennium/r4/proprietary-codes/#code-set-18736-account-types
+
+- name: Account-balance
+  required: 'No'
+  cardinality: 0..1
+  type: Extension
+  description: currencies
+  binding:
+    description: Currency codes from ISO 4217 (see https://www.iso.org/iso-4217-currency-codes.html)
+    terminology:
+    - display: Currencies
+      system: http://hl7.org/fhir/ValueSet/currencies
+      info_link: http://hl7.org/fhir/valueset-account-type.html
+
+- name: Account-state
+  required: 'No'
+  cardinality: 0..1
+  type: Extension
+  description: Status of the functional progression of the Account.
+  binding:
+    description: Status of the functional progression of the Account.
+    terminology:
+    - display: Benefit Order Status
+      system: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/24451
+      info_link: https://fhir.cerner.com/millennium/r4/proprietary-codes/#code-set-24451-benefit-order-status
+    - display: Correspondence Status
+      system: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/4002640
+      info_link: https://fhir.cerner.com/millennium/r4/proprietary-codes/#code-set-4002640-correspondence-status

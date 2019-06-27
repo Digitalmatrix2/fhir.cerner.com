@@ -233,3 +233,25 @@ This code set is highly customized by clients and may include appointment types 
       "display": "Office Visit - Return",
       "userSelected": true
     }
+
+#### Code Set 24451 Benefit Order Status
+
+This code set includes Functional Balance Account Statuses such as In Process and Ready to bill.
+
+    {
+      "system": "https://fhir.cerner.com/<EHR source id>/codeSet/24451,
+      "code": "653931",
+      "display": "In Process",
+      "userSelected": true
+    }
+
+#### Code Set 4002640 Correspondence Status
+
+This code set includes Functional Statement Account Statuses such as Pending and Delivered.
+
+    {
+      "system": "https://fhir.cerner.com/<EHR source id>/codeSet/4002640,
+      "code": "19177939",
+      "display": "Delivered",
+      "userSelected": true
+    }
