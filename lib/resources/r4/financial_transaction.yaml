@@ -1,0 +1,60 @@
+---
+name: Financial Transaction
+field_name_base_url: http://hl7.org/fhir/R4/basic.html
+fields:
+- name: financial-transaction-status
+  description: Financial transaction status
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-status
+  binding:
+    terminology:
+    - display: Financial Resource Status Codes
+      system: http://hl7.org/fhir/r4/valueset-fm-status.html
+      info_link: http://hl7.org/fhir/r4/valueset-fm-status.html
+
+- name: financial-transaction-method
+  description: Payment method codes
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-method
+  binding:
+    description: Payment method codes
+    terminology:
+    - display: v2 Payment Method Code
+      system: https://www.hl7.org/fhir/v2/0570/index.html
+      info_link: https://www.hl7.org/fhir/v2/0570/index.html
+    - display: Millennium payment method codes
+      system: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/20589
+      info_link: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/20589
+
+- name: financial-transaction-amount
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-amount
+  binding:
+    description: Currency codes from ISO 4217 (see https://www.iso.org/iso-4217-currency-codes.html)
+    terminology:
+    - display: Currencies
+      system: http://hl7.org/fhir/ValueSet/currencies
+      info_link: http://hl7.org/fhir/ValueSet/currencies
+    - display: Millennium Currency Type
+      system: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/18934
+      info_link: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/18934
+
+- name: financial-transaction-tendered-amount
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-tendered-amount
+  binding:
+    description: Currency codes from ISO 4217 (see https://www.iso.org/iso-4217-currency-codes.html)
+    terminology:
+    - display: Currencies
+      system: http://hl7.org/fhir/ValueSet/currencies
+      info_link: http://hl7.org/fhir/ValueSet/currencies
+    - display: Millennium Currency Type
+      system: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/18934
+      info_link: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/18934
+
+- name: financial-transaction-allocation-amount
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-amount
+  binding:
+    description: Currency codes from ISO 4217 (see https://www.iso.org/iso-4217-currency-codes.html)
+    terminology:
+    - display: Currencies
+      system: http://hl7.org/fhir/ValueSet/currencies
+    - display: Millennium Currency Type
+      system: https://fhir.cerner.com/&lt;EHR source id&gt;//codeSet/18934
+      info_link: https://fhir.cerner.com/&lt;EHR source id&gt;/codeSet/18934

@@ -1,0 +1,140 @@
+---
+name: Financial Transaction
+field_name_base_url: http://hl7.org/fhir/r4/Basic
+fields:
+- name: resourceType
+  required: 'Yes'
+  cardinality: 1..1
+  type: string
+  description: The type of the FHIR resource.
+  action: create
+  example: |
+    {
+      "resourceType":"Basic"
+    }
+  note: resourceType must be Basic
+  url: http://hl7.org/fhir/r4/json.html#resources
+
+- name: identifier
+  required: 'Yes'
+  cardinality: 0..*
+  type: identifier
+  description: Business identifiers for the financial transaction
+  action: create
+  note: At least one external transaction identifier must be provided.
+  url:
+
+- name: code
+  required: 'Yes'
+  cardinality: 1..1
+  type: code
+  description: Kind of resource
+  action: create
+  note: This will always be FinancialTransaction
+  url:
+
+- name: type
+  required: 'Yes'
+  cardinality: 1..1
+  type: CodeableConcept
+  description: Category of transaction Payment Type Codes (Example), Whether this is a payment or adjustment.
+  action: create
+  note: Will only accept payment or adjustment
+
+- name: transactionAlias.alias
+  required: 'Yes'
+  cardinality: 1..1
+  type: string
+  description: The aliases used to post the payment or adjustment.
+  action: create
+  note: These will be client configured aliases that help provide details about the transaction workflow.
+
+- name: location
+  required: 'No'
+  cardinality: 0..1
+  type: string
+  description: The location where the payment was collected.
+  action: create
+  note: Example-'Billing Office'
+
+- name: method
+  required: 'C'
+  cardinality: 0.1
+  type: CodeableConcept
+  description: Credit Card | Cash | Check | Direct Deposit | Cashier's Check | Traveler's Check
+  action: create
+  note: Required on payment transactions. Will be ignored on adjustments. Only payment methods of CASH, CREDIT_CARD, CHECK, CASHIER_CHECK, MONEY_ORDER and TRAVEL_CHECK will be supported for posts.
+  url: https://www.hl7.org/fhir/v2/0570/index.html
+
+- name: cardBrand
+  required: 'C'
+  cardinality: 0..1
+  type: string
+  description: card brand Visa, MasterCard, Amex, etc..
+  action: create
+  note: Required on payment transactions when method is credit card. Will be ignored on adjustments and all other payment methods.
+
+- name: paymentAccountNumber
+  required: 'C'
+  cardinality: 0..1
+  type: string
+  description: Last four digits of card, check number, EFT number or Lockbox #.
+  action: create
+  note: Required on payment transactions when method is CREDIT_CARD, CHECK, CASHIER_CHECK, MONEY_ORDER or TRAVEL_CHECK. Will be ignored on adjustments and all other payment methods.
+
+- name: paymentDate
+  required: 'C'
+  cardinality: 0..1
+  type: date
+  description: Expiration date if card | check date if check | EFT Date | Lockbox date|
+  action: create
+  note: Required on payment transactions when method is CREDIT_CARD, CHECK, CASHIER_CHECK, MONEY_ORDER or TRAVEL_CHECK. Will be ignored on adjustments and all other payment methods. CPA needs MM/YY for card and YYYY-MM-DD for check.
+
+- name: authorizationNumber
+  required: 'No'
+  cardinality: 0..1
+  type: string
+  description: The credit card authorization number
+  action: create
+  note: Optional field on payment transactions when method is credit card. Will be ignored on adjustments and all other payment methods.
+
+- name: tenderedAmount
+  required: 'C'
+  cardinality: 0..1
+  type: money
+  description: Tendered amount of the cash payment.
+  action: create
+  note: Should be equal or greater than payment amount. Required on payment transactions when method is cash. Will be ignored on adjustments and all other payment methods.
+
+- name: amount
+  required: 'Yes'
+  cardinality: 0..1
+  type: money
+  description: The total amount of the payment/adjustment resource
+  action: create
+  note: Not required any longer as we will populate amount field using allocation.amount.
+
+- name: allocation
+  required: 'Yes'
+  cardinality: 1..*
+  type: BackboneElement
+  description: The amount allocated to a specific allocation target
+  action: create
+  note: This will be an array of allocations but we will only support one allocation for phase 1. Therefore, we will take the first element of the array when posting.
+
+- name: allocation.target.reference
+  required: 'Yes'
+  cardinality: 0..1
+  type: reference
+  description: The Specific target that the payment or adjustment should be posted to.
+  action: create
+  note: Depending upon the posting level, the payment or adjustment may be allocated to resources in a FIFO method. Encounter will be the only posting level that Cerner Patient Accounting will support in the initial roll-out.
+
+- name: allocation.amount
+  required: 'Yes'
+  cardinality: 1..1
+  type: money
+  description: The amount of the financial transaction.
+  action: create
+  note: This field is now required because we will populate the amount for the local service using this field
+
