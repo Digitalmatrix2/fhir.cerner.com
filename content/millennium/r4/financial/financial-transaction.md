@@ -79,16 +79,8 @@ Search for Financial Transactions that meet supplied query parameters:
 #### Response
 
 <%= headers status: 200 %>
-<%= json(:R4_FINANCIAL_TRANSACTION_BUNDLE_ADJUSTMENT) %>
+<%= json(:R4_FINANCIAL_TRANSACTION_BUNDLE) %>
 
-#### Request
-
-    GET https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic?encounter=31363178&code=fintrans&offset=0&_count=19&type=payment
-
-#### Response
-
-<%= headers status: 200 %>
-<%= json(:R4_FINANCIAL_TRANSACTION_BUNDLE_PAYMENT) %>
 
 ### Errors
 

@@ -1,5 +1,5 @@
 ---
-title: Encounters | DSTU 2 API
+title: Financial Transaction | DSTU 2 API
 layout: api
 ---
 
