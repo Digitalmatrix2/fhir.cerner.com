@@ -234,6 +234,28 @@ This code set is highly customized by clients and may include appointment types 
       "userSelected": true
     }
 
+#### Code Set 18736 Account Types
+
+This code set includes Account Types such as A/R and CASH.
+
+    {
+      "system": "https://fhir.cerner.com/<EHR source id>/codeSet/18736,
+      "code": "18736",
+      "display": "Cash",
+      "userSelected": true
+    }
+
+#### Code Set 18934 Currency Type
+
+This code set includes currency types such as USD.
+
+    {
+      "system": "https://fhir.cerner.com/<EHR source id>/codeSet/18736,
+      "code": "11074",
+      "display": "USD",
+      "userSelected": true
+    }
+
 #### Code Set 24451 Benefit Order Status
 
 This code set includes Functional Balance Account Statuses such as In Process and Ready to bill.
@@ -244,6 +266,18 @@ This code set includes Functional Balance Account Statuses such as In Process an
       "display": "In Process",
       "userSelected": true
     }
+
+#### Code Set 28200 PFT Bill Alias Type
+
+This code set includes bill alias types such as billalias, invalias, and stmtalias.
+
+    {
+      "system": "https://fhir.cerner.com/<EHR source id>/codeSet/28200,
+      "code": "6678349",
+      "display": "STMTALIAS",
+      "userSelected": true
+    }
+
 
 #### Code Set 4002640 Correspondence Status
 

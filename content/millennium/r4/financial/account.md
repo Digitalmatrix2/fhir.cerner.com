@@ -11,6 +11,21 @@ title: Account | R4 API
 
 The Account resource acts as a central record against which charges, payments, and adjustments are applied. It contains information about which parties are responsible for payment of the account. The account resource supports multiple account types and relationships to other accounts.
 
+### Account Relationships
+
+![Account Relationship Model](/images/account-relationship-model.png)
+
+### Account Types
+
+The account resource supports multiple account types which are defined below. 
+
+* Financial Account - Top level patient account
+* Guarantor Balance Account - Self pay balance account.
+* Charge Group Account - Charge grouping account for an episode of care.
+* Insurance Benefit Account - Insurance balance account.
+* Statement - Snapshot in time of a patient statement.
+
+
 The following fields are returned if valued:
 
 * [Account id]( https://hl7.org/fhir/r4/resource-definitions.html#Resource.id ){:target="_blank"} 
@@ -22,11 +37,18 @@ The following fields are returned if valued:
 * [Owner](https://hl7.org/fhir/R4/account-definitions.html#Account.owner){:target="_blank"} 
 * [Guarantor](https:// https://hl7.org/fhir/R4/account-definitions.html#Account.guarantor){:target="_blank"} 
 * [Part of](https://hl7.org/fhir/R4/account-definitions.html#Account.partOf){:target="_blank"}
+* [Extensions including related parts, balance, and state](#extensions){:target="_blank"}
 
 
 ## Terminology Bindings
 
 <%= terminology_table(:account, :r4) %>
+
+## Extensions
+
+* [Related Parts]
+* [Balance]
+* [State]
 
 ## Search
 
@@ -36,20 +58,25 @@ Search for Accounts that meet supplied query parameters:
 
 ### Authorization Types
 
-<%= authorization_types(practitioner: true, patient: true, system: true) %>
+<%= authorization_types(practitioner: true, patient: false, system: true) %>
 
 ### Parameters
 
  Name         | Required?                                         | Type          | Description
 --------------|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------
- `id`         | no                                                | [`token`]     | The logical resource id associated with the resource.
- `_id`        | This or identifier or patient or guarantor        | [`token`]     | The logical resource id associated with the resource.
- `identifier` | This or _id or patient or guarantor               | [`token`]     | Aliases of the Account like Statement Number
- `type`       | This or id or identifier or patient or guarantor  | [`token`]     | The specific type of account
- `patient`    | This or _id or identifier or guarantor            | [`reference`] | The entity that caused the expenses
- `guarantor`  | This or _id or identifier or patient              | [`reference`] | The parties responsible for balancing the account
+ `_id`        | This or any other required search parameter       | [`token`]     | The logical resource id associated with the resource
+ `identifier` | This and type and patient, or any other search param, or _id  | [`token`]     | Aliases of the Account like Statement Number
+ `type`       | This and/or any other search param, or _id        | [`token`]     | The specific type of account
+ `patient`    | This and type and patient, or any other search param, or _id  | [`reference`] | The entity that caused the expenses
+ `guarantor`  | This and type, or any other search param, or _id  | [`reference`] | The parties responsible for balancing the account
  `_count`     | no                                                | [`number`]    | Paging parameter
 
+Notes:
+
+* `Account-balance` is only returned on statement, guarantor-balance, and insurance-balance types. 
+* `Patient` is only returned on statement and financial-account types 
+* Guarantor search can only be RelatedPersons 
+* IDs are prefixed based upon the account type 
 
 ### Headers
 
