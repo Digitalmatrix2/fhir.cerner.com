@@ -66,8 +66,9 @@ Search for Accounts that meet supplied query parameters:
  `identifier` | This and type and patient, or any other search param, or _id  | [`token`]     | Aliases of the Account like Statement Number
  `type`       | This and/or any other search param, or _id        | [`token`]     | The specific type of account
  `patient`    | This and type and patient, or any other search param, or _id  | [`reference`] | The entity that caused the expenses
- `guarantor`  | This and type, or any other search param, or _id  | [`reference`] | The parties responsible for balancing the account
+ `-guarantor` | This and type, or any other search param, or _id  | [`reference`] | The parties responsible for balancing the account
  `_count`     | no                                                | [`number`]    | Paging parameter
+ 
 
 Notes:
 
