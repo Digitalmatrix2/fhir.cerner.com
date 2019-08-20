@@ -18,123 +18,308 @@ fields:
 - name: identifier
   required: 'Yes'
   cardinality: 0..*
-  type: identifier
-  description: Business identifiers for the financial transaction
+  type: Identifier
+  description: Identifier assigned to the resource for business purposes.
   action: create
+  example: |
+    {
+      "identifier": [
+        {
+            "value": "33358000",
+            "use": "usual"
+        }
+      ]
+    }
   note: At least one external transaction identifier must be provided.
-  url:
+  url: http://hl7.org/fhir/basic-definitions.html#Basic.identifier
 
 - name: code
   required: 'Yes'
   cardinality: 1..1
   type: code
-  description: Kind of resource
+  description: Identifies the 'type' of resource - equivalent to the resource name for other resources.
   action: create
-  note: This will always be FinancialTransaction
-  url:
+  example: |
+    {
+      "code": "fintrans"
+    }
+  note: This will always be fintrans
+  url: http://hl7.org/fhir/r4/basic-definitions.html#Basic.code
 
-- name: type
+- name: financial-transaction-type
   required: 'Yes'
   cardinality: 1..1
   type: CodeableConcept
   description: Category of transaction Payment Type Codes (Example), Whether this is a payment or adjustment.
   action: create
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-type",
+      "valueCode": "Adjustment"
+    }
   note: Will only accept payment or adjustment
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-type
 
-- name: transactionAlias.alias
+- name: financial-transaction-transaction-alias
+  required: 'Yes'
+  cardinality: 1..1
+  type: BackboneElement
+  description: Backbone element of the transaction aliases.
+  action: create
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-transaction-alias",
+      "extension": [
+          {
+              "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-transaction-alias-alias",
+              "valueString": "729813"
+          }
+      ]
+    }
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-transaction-alias
+
+- name: financial-transaction-transaction-alias-alias
   required: 'Yes'
   cardinality: 1..1
   type: string
-  description: The aliases used to post the payment or adjustment.
+  description: The aliases used to create the FinancialTransaction resources.
   action: create
-  note: These will be client configured aliases that help provide details about the transaction workflow.
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-transaction-alias",
+      "extension": [
+          {
+              "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-transaction-alias-alias",
+              "valueString": "729813"
+          }
+      ]
+    }
+  note: A value that correlates to a client defined name which represents the combination of the type, subtype, and reason describing the FinancialTransaction. Is required to create al FinancialTransaction resource
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-transaction-alias-alias
 
-- name: location
+- name: financial-transaction-location
   required: 'No'
   cardinality: 0..1
   type: string
   description: The location where the payment was collected.
   action: create
-  note: Example-'Billing Office'
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-location",
+      "valueString": "201802160003"
+    }
+  note: These are client configured location values.
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-location
 
-- name: method
+- name: financial-transaction-method
   required: 'C'
   cardinality: 0.1
   type: CodeableConcept
-  description: Credit Card | Cash | Check | Direct Deposit | Cashier's Check | Traveler's Check
+  description: The method of payment.
   action: create
-  note: Required on payment transactions. Will be ignored on adjustments. Only payment methods of CASH, CREDIT_CARD, CHECK, CASHIER_CHECK, MONEY_ORDER and TRAVEL_CHECK will be supported for posts.
-  url: https://www.hl7.org/fhir/v2/0570/index.html
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-method",
+      "valueCodeableConcept": {
+          "coding": [
+              {
+                  "code": "CHCK",
+                    "display": "Check",
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0570",
+                    "userSelected": true
+              }
+          ],
+          "text": "Check"
+      }
+    }
+  note: Required on payment transactions. Payment methods of Cash, Credit Card, Check, Cashier’s Check, Traveler’s Check and Money Order will be supported for FinancialTransaction creates.
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-method
 
-- name: cardBrand
+- name: financial-transaction-card-brand
   required: 'C'
   cardinality: 0..1
   type: string
-  description: card brand Visa, MasterCard, Amex, etc..
+  description: The brand of credit card used for the transaction.
   action: create
-  note: Required on payment transactions when method is credit card. Will be ignored on adjustments and all other payment methods.
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-card-brand",
+      "valueString": "VISA"
+    }
+  note: Required on payment transactions when method is Credit Card. Acceptable values are “VISA”, “MASTER”, “AMEX”, “DISCOVER”.
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-card-brand
 
-- name: paymentAccountNumber
+- name: financial-transaction-account-number
   required: 'C'
   cardinality: 0..1
   type: string
-  description: Last four digits of card, check number, EFT number or Lockbox #.
+  description: The last four digits of the credit card or the check number used for the transaction.
   action: create
-  note: Required on payment transactions when method is CREDIT_CARD, CHECK, CASHIER_CHECK, MONEY_ORDER or TRAVEL_CHECK. Will be ignored on adjustments and all other payment methods.
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-account-number",
+      "valueString": "1234"
+    }
+  note: Required on payment transactions when method is Credit Card, Check, Cashier’s Check, Traveler’s Check and Money Order. Value must be numeric.
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-account-number
 
-- name: paymentDate
+- name: financial-transaction-date
   required: 'C'
   cardinality: 0..1
   type: date
-  description: Expiration date if card | check date if check | EFT Date | Lockbox date|
+  description: Expiration date if method is credit card | check date if method is check
   action: create
-  note: Required on payment transactions when method is CREDIT_CARD, CHECK, CASHIER_CHECK, MONEY_ORDER or TRAVEL_CHECK. Will be ignored on adjustments and all other payment methods. CPA needs MM/YY for card and YYYY-MM-DD for check.
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-date",
+      "valueDate": "2020-02-01"
+    }
+  note: Required on payment transactions when method is Credit Card, Check, Cashier’s Check, Traveler’s Check and Money Order.
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-date
 
-- name: authorizationNumber
+- name: financial-transaction-authorization
   required: 'No'
   cardinality: 0..1
   type: string
   description: The credit card authorization number
   action: create
-  note: Optional field on payment transactions when method is credit card. Will be ignored on adjustments and all other payment methods.
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-authorization",
+      "valueString": "123456"
+    }
+  note: Optional field on payment transactions when method is Credit Card.
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-authorization
 
-- name: tenderedAmount
+- name: financial-transaction-tendered-amount
   required: 'C'
   cardinality: 0..1
-  type: money
+  type: Money
   description: Tendered amount of the cash payment.
   action: create
-  note: Should be equal or greater than payment amount. Required on payment transactions when method is cash. Will be ignored on adjustments and all other payment methods.
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-tendered-amount",
+      "valueMoney": {
+          "value": "123000",
+          "currency": {
+              "coding": [
+                  {
+                      "system": "urn:iso:std:iso:4217",
+                      "code": "USD",
+                      "display": "United States Dollar",
+                      "userSelected": true
+                  }
+              ],
+              "text": "United States Dollar"
+          }
+      }
+    }
+  note: Should be greater than or equal to the value of the financial-transaction-amount. Required on payment transactions when method is Cash.
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-tendered-amount
 
-- name: amount
+- name: financial-transaction-amount
   required: 'Yes'
   cardinality: 0..1
-  type: money
-  description: The total amount of the payment/adjustment resource
+  type: Money
+  description: The total amount of the FinancialTransaction resource.
   action: create
-  note: Not required any longer as we will populate amount field using allocation.amount.
+  example: |
+    {
+        "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-amount",
+        "valueMoney": {
+            "value": "123000",
+            "currency": {
+                "coding": [
+                    {
+                        "system": "urn:iso:std:iso:4217",
+                        "code": "USD",
+                        "display": "United States Dollar",
+                        "userSelected": true
+                    }
+                ],
+                "text": "United States Dollar"
+            }
+        }
+    }
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-amount
 
-- name: allocation
+- name: financial-transaction-allocation
   required: 'Yes'
   cardinality: 1..*
   type: BackboneElement
-  description: The amount allocated to a specific allocation target
+  description: How the FinancialTransaction should be applied.
   action: create
-  note: This will be an array of allocations but we will only support one allocation for phase 1. Therefore, we will take the first element of the array when posting.
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation",
+      "extension": [
+          {
+              "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-target",
+              "valueReference": {
+                  "reference": "Encounter/31363178"
+              }
+          },
+          {
+              "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-amount",
+              "valueMoney": {
+                  "value": "400000",
+                  "currency": {
+                      "coding": [
+                          {
+                              "system": "urn:iso:std:iso:4217",
+                              "code": "USD",
+                              "display": "United States Dollar",
+                              "userSelected": true
+                          }
+                      ],
+                      "text": "United States Dollar"
+                  }
+              }
+          }
+      ]
+    }
+  note: Only the first allocation element will be used when creating the resource for this initial release.
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation
 
-- name: allocation.target.reference
-  required: 'Yes'
-  cardinality: 0..1
-  type: reference
-  description: The Specific target that the payment or adjustment should be posted to.
-  action: create
-  note: Depending upon the posting level, the payment or adjustment may be allocated to resources in a FIFO method. Encounter will be the only posting level that Cerner Patient Accounting will support in the initial roll-out.
-
-- name: allocation.amount
+- name: financial-transaction-allocation-target
   required: 'Yes'
   cardinality: 1..1
-  type: money
-  description: The amount of the financial transaction.
+  type: Reference
+  description: The specific target the FinancialTransaction should be posted to.
   action: create
-  note: This field is now required because we will populate the amount for the local service using this field
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-target",
+      "valueReference": {
+            "reference": "Encounter/31363178"
+      		}
+    }
+  note: Encounter will be the only posting level target that will be supported for this initial release.
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-target
 
+- name: financial-transaction-allocation-amount
+  required: 'Yes'
+  cardinality: 1..1
+  type: Money
+  description: The amount of the Financial Transaction that is to be allocated to the specific target.
+  action: create
+  example: |
+    {
+      "url": "https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-amount",
+      "valueMoney": {
+            "value": "400000",
+            "currency": {
+                "coding": [
+                    {
+                        "system": "urn:iso:std:iso:4217",
+                        "code": "USD",
+                        "display": "United States Dollar",
+                        "userSelected": true
+                    }
+                ],
+                "text": "United States Dollar"
+            }
+        }
+    }
+  url: https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-amount

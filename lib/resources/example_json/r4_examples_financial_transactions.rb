@@ -2,7 +2,7 @@ module Cerner
   module Resources
 
     R4_FINANCIAL_TRANSACTION_PAYMENT ||= {
-          "resourceType": "FinancialTransaction",
+          "resourceType": "Basic",
           "id": "11291025",
           "meta": {
               "versionId": "1"
@@ -152,7 +152,7 @@ module Cerner
       }
 
     R4_FINANCIAL_TRANSACTION_ADJUSTMENT ||= {
-            "resourceType": "FinancialTransaction",
+            "resourceType": "Basic",
             "id": "11256094",
             "meta": {
                 "versionId": "1"
@@ -270,7 +270,7 @@ module Cerner
     }
 
     R4_FINANCIAL_TRANSACTION_CASH ||={
-        "resourceType": "FinancialTransaction",
+        "resourceType": "Basic",
         "code": "fintrans",
         "identifier": [
             {
@@ -376,7 +376,7 @@ module Cerner
     }
 
     R4_FINANCIAL_TRANSACTION_CARD ||={
-        "resourceType": "FinancialTransaction",
+        "resourceType": "Basic",
         "code": "fintrans",
         "identifier": [
             {
@@ -477,7 +477,7 @@ module Cerner
     }
 
     R4_FINANCIAL_TRANSACTION_CHECK ||={
-        "resourceType": "FinancialTransaction",
+        "resourceType": "Basic",
         "code": "fintrans",
         "identifier": [
             {
@@ -590,7 +590,7 @@ module Cerner
         ]
     }
     R4_FINANCIAL_TRANSACTION ||={
-            "resourceType": "FinancialTransaction",
+            "resourceType": "Basic",
             "code": "fintrans",
             "identifier": [
                 {
@@ -710,7 +710,7 @@ module Cerner
               {
                   "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11256094",
                   "resource": {
-                      "resourceType": "FinancialTransaction",
+                      "resourceType": "Basic",
                       "id": "11256094",
                       "meta": {
                           "versionId": "1"
@@ -830,7 +830,7 @@ module Cerner
               {
                   "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11149281",
                   "resource": {
-                      "resourceType": "FinancialTransaction",
+                      "resourceType": "Basic",
                       "id": "11149281",
                       "meta": {
                           "versionId": "1"
@@ -965,7 +965,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11986432",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11986432",
                     "meta": {
                         "versionId": "1"
@@ -1111,7 +1111,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11986029",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11986029",
                     "meta": {
                         "versionId": "1"
@@ -1257,7 +1257,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11985452",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11985452",
                     "meta": {
                         "versionId": "1"
@@ -1403,7 +1403,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11972895",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11972895",
                     "meta": {
                         "versionId": "1"
@@ -1549,7 +1549,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11972870",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11972870",
                     "meta": {
                         "versionId": "1"
@@ -1695,7 +1695,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11972776",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11972776",
                     "meta": {
                         "versionId": "1"
@@ -1842,7 +1842,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11855674",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11855674",
                     "meta": {
                         "versionId": "1"
@@ -1998,7 +1998,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11853481",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11853481",
                     "meta": {
                         "versionId": "1"
@@ -2154,7 +2154,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11847338",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11847338",
                     "meta": {
                         "versionId": "1"
@@ -2304,7 +2304,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11847330",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11847330",
                     "meta": {
                         "versionId": "1"
@@ -2460,7 +2460,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11847322",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11847322",
                     "meta": {
                         "versionId": "1"
@@ -2616,7 +2616,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11847314",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11847314",
                     "meta": {
                         "versionId": "1"
@@ -2772,7 +2772,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11847306",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11847306",
                     "meta": {
                         "versionId": "1"
@@ -2928,7 +2928,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11847298",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11847298",
                     "meta": {
                         "versionId": "1"
@@ -3084,7 +3084,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11847290",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11847290",
                     "meta": {
                         "versionId": "1"
@@ -3240,7 +3240,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11847282",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11847282",
                     "meta": {
                         "versionId": "1"
@@ -3396,7 +3396,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11847274",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11847274",
                     "meta": {
                         "versionId": "1"
@@ -3552,7 +3552,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11845317",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11845317",
                     "meta": {
                         "versionId": "1"
@@ -3708,7 +3708,7 @@ module Cerner
             {
                 "fullUrl": "https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/11845309",
                 "resource": {
-                    "resourceType": "FinancialTransaction",
+                    "resourceType": "Basic",
                     "id": "11845309",
                     "meta": {
                         "versionId": "1"

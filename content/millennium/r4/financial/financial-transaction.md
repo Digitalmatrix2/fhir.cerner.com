@@ -1,139 +1,33 @@
 ---
-title: Financial Transactions | R4 API
+title: FinancialTransaction | R4 API
 ---
 
-# Financial Transactions
+# FinancialTransaction
 
 * TOC
 {:toc}
 
 ## Overview
 
-This resource will be used to record and exchange financial payment and adjustment information from Cerner's Revenue Cycle systems
-
-The following fields are returned if valued:
-
-* [Basic id]( https://hl7.org/fhir/r4/resource-definitions.html#Resource.id ){:target="_blank"} 
-* [Basic Identifier](https://hl7.org/fhir/R4/basic-definitions.html#Basic.identifier){:target="_blank"} 
-* [Code](https://hl7.org/fhir/R4/basic-definitions.html#Basic.code){:target="_blank"} 
-* [Created](https://hl7.org/fhir/R4/basic-definitions.html#Basic.created){:target="_blank"}
-
- 
-
-Extensions: Insert links to the structure definition urls.
-
-* [financial-transaction-status](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-status)
-* [financial-transaction-type](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-type)
-* [financial-transaction-alias](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-alias)
-* [financial-transaction-alias-alias](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-alias-alias)
-* [financial-transaction-alias-type](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-alias-type)
-* [financial-transaction-alias-subtype](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-alias-subtype)
-* [financial-transaction-alias-reason](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-alias-reason)
-* [financial-transaction-location](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-location)
-* [financial-transaction-method](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-method)
-* [financial-transaction-card-brand](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-card-brand)
-* [financial-transaction-account-number](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-account-number)
-* [financial-transaction-date](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-date)
-* [financial-transaction-authorization](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-authorization)
-* [financial-transaction-tendered-amount](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-tendered-amount)
-* [financial-transaction-amount](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-amount)
-* [financial-transaction-allocation](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation)
-* [financial-transaction-allocation-target](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-target)
-* [financial-transaction-allocation-amount](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-amount)
-* [financial-transaction-allocation-encounter](https://fhir-ehr.cerner.com/r4/StructureDefinition/financial-transaction-allocation-encounter)
+The FinancialTransaction resource provides the ability to record and exchange financial payment and adjustment information related to patient healthcare services. 
 
 ## Terminology Bindings
 
 <%= terminology_table(:financial_transaction, :r4) %>
 
-## Search
-
-Search for Financial Transactions that meet supplied query parameters:
-
-    GET /Basic?:parameters
-
-
-### Authorization Types
-
-<%= authorization_types(practitioner: true, patient: false, system: true)%>
-
-### Parameters
-
- Name           | Required?                      | Type          | Description
-----------------|--------------------------------|---------------|-------------------------------------------------------------------------------------------------------
- `_id`          | This or any other required search parameter | [`token`]     | The logical resource id associated with the resource. 
- `identifier`   |  Update if this is going to be supported               | [`token`]     | Aliases of the FinancialTransaction like external transaction id. 
- `encounter`    |  This and type, or _id         | [`reference`] | Return payments and adjustments that relate to a specific encounter 
- `type`         |  This and encounter, or _id    | [`token`]     | Whether this is a payment or adjustment transaction
-
-### Headers
-
-<%= headers fhir_json: true %>
-
-### Example
-
-#### Request
-
-    GET https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic?_id=FT-P-123,FT-A-11256094,FT-A-11149281&type=adjustment&code=fintrans
-
-#### Response
-
-<%= headers status: 200 %>
-<%= json(:R4_FINANCIAL_TRANSACTION_BUNDLE) %>
-
-
-### Errors
-
-The common [errors] and [OperationOutcomes] may be returned.
-
-## Retrieve by id
-
-List an individual transaction by its payment or adjustment id:
-
-    GET /Basic/:id
-
-### Authorization Types
-
-<%= authorization_types(practitioner: true, patient: false, system: true)%>
-
-### Headers
-
-<%= headers fhir_json: true %>
-
-### Example
-
-List an individual transaction by its payment id:
-
-#### Request
-
-    GET https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/FT-P-11291025
-
-#### Response
-
-<%= headers status: 200 %>
-<%= json(:R4_FINANCIAL_TRANSACTION_PAYMENT) %>
-
-List an individual transaction by its adjustment id:
-
-#### Request
-
-    GET https://fhir-open.devcerner.com/r4/2c400054-42d8-4e74-87b7-80b5bd5fde9f/Basic/FT-A-11256094
-
-#### Response
-
-<%= headers status: 200 %>
-<%= json(:R4_FINANCIAL_TRANSACTION_ADJUSTMENT) %>
-
-### Errors
-
-The common [errors] and [OperationOutcomes] may be returned.
-
 ## Create
 
 Resource for posting payment and adjustment transactions into Millennium
 
-    POST /Basic
+    POST /Basic    
+ 
+ 
+_Implementation Notes_
 
+* Only the body fields mentioned below are supported.
+* When integrating your application with a client's production environment you will work with the client to determine the appropriate financial-transaction-transaction-alias-alias values to send with the payment and adjustment transactions. 
+
+   
 ### Authorization Types
 
 <%= authorization_types(practitioner: true, patient: false, system: true) %>
