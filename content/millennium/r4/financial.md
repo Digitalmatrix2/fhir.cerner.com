@@ -1,7 +1,10 @@
 ---
-title: FinancialTransaction | DSTU 2 API
+title: Financial| R4 API
 layout: api
 ---
 
-<%= render '/financial-transactions.*' %>
+<%= render '/financial*' %>
+* [Account](../financial/account)
 * [FinancialTransaction](../financial/financial-transaction)
+
+
